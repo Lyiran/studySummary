@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>all-mediate</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		text-align: center;/* hack for IE */
+		background: #333333;
+	}
+	/* 第一种居中方法 */
+	.wrap{
+		width: 300px;
+		height: 300px;
+		margin: 20px auto;
+		/* IE5.x不认识auto，同时IE将text-align:center;误解为所有的东西居中，不仅仅是文本，所以给IE一个hack */
+		text-align: left;/* hack for IE */
+		background: #fff;
+	}
+	/* 第二种居中 */
+	/* 给容器设置绝对定位，并且定位top和left为50%，同时把margin-top和margin-left的值设为高度和宽度一半的负值 */
+	.wrap-1{
+		width: 300px;
+		height: 300px;
+		background: #fff;
+		position: relative;
+
+	}
+	.inner-1{
+		width: 150px;
+		height: 150px;
+		background: #66cc99;
+		position: absolute;
+		left: 50%;/*元素的左部边界离父元素的的位置是父元素宽度的一半*/
+		top: 50%;/*元素的顶部边界离父元素的的位置是父元素高度的一半*/
+		margin: -75px 0 0 -75px;/*设置元素顶边和左边负边距，大小为元素高度和宽度的一半*/
+	}
+	.table{
+		height: 300px;
+		width: 300px;
+		margin-top: 20px;
+		display: table;
+		position: relative;
+		float: left;
+		background: #fff;
+	}
+	.wrap-2{
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		padding: 10px;
+		*position: absolute;
+		*top: 50%;
+		*left: 50%;
+	}
+	.inner-2{
+		*position: relative;
+		*top: -50%;
+		*left: -50%;
+	}
+	</style>
+</head>
+<body>
+<div class="wrap">
+</div>
+<div class="wrap-1">
+		<div class="inner-1"></div>
+	</div>
+	<div class="table">
+		<div class="wrap-2">
+			<div class="inner-2">content</div>
+		</div>
+	</div>
+</body>
+</html>
