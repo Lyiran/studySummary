@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mobile-message document</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font-size: 14px;
+		font-family: "微软雅黑";
+	}
+	#wrap{
+		width: 300px;
+		height: 600px;
+		margin: 30px auto;
+		overflow: hidden;
+	}
+	#iphone-bg{
+		width: 289px;
+		height: 594px;
+		background: url(images/iphone.jpg);
+		position: relative;
+	}
+	.iphone-screen{
+		width: 222px;
+		height: 356px;
+		padding: 4px;
+		position: absolute;
+		left: 28px;
+		top: 88px;
+		overflow: auto;
+	}
+	.face-img{
+		width: 34px;
+		height: 36px;
+		overflow: hidden;
+		border-radius: 6px;
+		position: absolute;
+		left: 29px;
+		bottom: 92px;
+		cursor: pointer;
+	}
+	.text{
+		width: 136px;
+		height: 34px;
+		padding-left: 4px;
+		border-radius: 4px;
+		position: absolute;
+		left: 68px;
+		bottom: 92px;
+	}
+	.btn{
+		width: 44px;
+		height: 34px;
+		position: absolute;
+		left: 214px;
+		bottom: 96px;
+		border: none;
+	  background: none;
+		cursor: pointer;
+	}
+	.text-bg{
+		margin-bottom: 8px;
+		overflow: hidden;
+	}
+	.face-1,.face-2{
+		width: 24px;
+		height: 24px;
+	}
+	.text-cont-1,.text-cont-2{
+		padding: 5px;
+		border-radius: 5px;
+		color: #fff;
+	}
+	.face-1{
+		float: left;
+	}
+	.text-content-1{
+		margin-left: 28px;
+	}
+	.text-cont-1{
+		float: left;
+		margin-right: 30px;
+		background: #ccc;
+	}
+	.face-2{
+		float: right;
+	}
+	.text-content-2{
+		margin-right: 28px;
+	}
+	.text-cont-2{
+		float: right;
+		margin-left: 30px;
+		background: #21c618;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="container">
+			<div id="iphone-bg">
+				<div class="iphone-screen">
+				</div>
+				<img class="face-img" src="images/1.png" alt="face" />
+				<input class="text" type="text" />
+				<input class="btn" type="button" />
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	function getByClass(oParent,sClass)
+	{
+		var aEle=oParent.getElementsByTagName("*");
+		var aResult=[];
+		for(var i=0;i<aEle.length;i++)
+		{
+			if(aEle[i].className==sClass)
+			
+				aResult.push(aEle[i]);
+		}
+		return aResult;
+	}
+	window.onload=function(){
+		var oDiv=document.getElementById("iphone-bg");
+		var oIphoneScreen=getByClass(oDiv,"iphone-screen")[0];
+		var oFaceImg=getByClass(oDiv,"face-img")[0];
+		var oText=getByClass(oDiv,"text")[0];
+		var oBtn=getByClass(oDiv,"btn")[0];
+		var imgArr= ["images/1.png","images/2.png"];
+		var num=0;
+		//聊天表情头像切换
+		oFaceImg.onclick=function(){
+			num++;
+			if(num==imgArr.length){
+				num=0;
+			}
+			oFaceImg.src=imgArr[num];
+		};
+		//信息发送
+		oBtn.onclick=function(){
+			if(oFaceImg.src.indexOf("images/1.png") != -1 ){
+				oIphoneScreen.innerHTML+="<div class=\"text-bg\">"+"<img class=\"face-1\" src=\""+oFaceImg.src+"\" alt=\"表情\" />"+"<div class=\"text-content-1\">"+"<span class=\"text-cont-1\">"+oText.value+"</span>"+"</div>"+"</div>";
+				oText.value="";
+			} else if ( oFaceImg.src.indexOf("images/2.png") != -1 ) {
+				oIphoneScreen.innerHTML+="<div class=\"text-bg\">"+"<img class=\"face-2\" src=\""+oFaceImg.src+"\" alt=\"表情\" />"+"<div class=\"text-content-2\">"+"<span class=\"text-cont-2\">"+oText.value+"</span>"+"</div>"+"</div>";
+				oText.value="";
+			}
+		};
+	};
+	</script>
+</body>
+</html>
